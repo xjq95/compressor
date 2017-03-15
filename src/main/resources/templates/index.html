@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>在线压缩</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<link rel="icon" th:href="@{images/logo2.png}" href="../static/images/logo2.png" />
+	<link rel="shortcut icon" th:href="@{images/logo2.png}" href="../static/images/logo2.png" />
+	<link th:href="@{/css/jquery-ui-1.10.3.custom.min.css}" href="../static/css/jquery-ui-1.10.3.custom.min.css"
+					rel="stylesheet" type="text/css" />
+	<link th:href="@{/css/compressjpeg.css}" href="../static/css/compressjpeg.css" rel="stylesheet"
+					type="text/css" />
+	<link th:href="@{/css/bootstrap-theme.css}" href="../static/css/bootstrap-theme.css" rel="stylesheet"
+					type="text/css" />
+	<link th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css" rel="stylesheet"
+					type="text/css" />
+	<script type="text/javascript" th:src="@{/js/jquery-2.1.3.min.js}"
+					src="../static/js/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/jquery-ui.min.js}"
+					src="../static/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"
+					src="../static/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.validationEngine.js}"
+					src="../static/js/jquery.validationEngine.js"></script>
+	<script type="text/javascript" src="../static/js/jquery.validationEngine-zh_CN.js"
+					th:src="@{/js/jquery.validationEngine-zh_CN.js}"></script>
+</head>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#compressInfo').validate();
+    });
+
+    //    function readFileFirefox(fileBrowser) {
+    //        try {
+    //            netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+    //        }
+    //        catch (e) {
+    //            alert('无法访问本地文件，由于浏览器安全设置。为了克服这一点，请按照下列步骤操作：(1)在地址栏输入"about:config";(2) 右键点击并选择 New->Boolean; (3) 输入"signed.applets.codebase_principal_support" （不含引号）作为一个新的首选项的名称;(4) 点击OK并试着重新加载文件');
+    //            return;
+    //        }
+    //        var fileName = fileBrowser.value; //这一步就能得到客户端完整路径。下面的是否判断的太复杂，还有下面得到ie的也很复杂。
+    //        var multipartFile = Components.classes["@mozilla.org/file/local;1"]
+    //            .createInstance(Components.interfaces.nsILocalFile);
+    //        try {
+    //            // Back slashes for windows
+    //            file.initWithPath(fileName.replace(/\//g, "\\\\"));
+    //        }
+    //        catch (e) {
+    //            if (e.result != Components.results.NS_ERROR_FILE_UNRECOGNIZED_PATH) throw e;
+    //            alert("File '" + fileName + "' cannot be loaded: relative paths are not allowed. Please provide an absolute path to this file.");
+    //            return;
+    //        }
+    //        if (file.exists() == false) {
+    //            alert("File '" + fileName + "' not found.");
+    //            return;
+    //        }
+    //        return file.path;
+    //    };
+
+    //    //根据不同浏览器获取路径
+    //    function getvl(obj) {
+    //        //判断浏览器
+    //        var Sys = {};
+    //        var ua = navigator.userAgent.toLowerCase();
+    //        var s;
+    //        (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+    //            (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+    //                (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+    //                    (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+    //                        (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+    //        var file_url = "";
+    //        if (Sys.ie <= "6.0") {
+    //            //ie5.5,ie6.0
+    //            file_url = obj.value;
+    //        } else if (Sys.ie >= "7.0") {
+    //            //ie7,ie8
+    //            obj.select();
+    //            file_url = document.selection.createRange().text;
+    //        } else if (Sys.firefox) {
+    //            //fx
+    //            //file_url = document.getElementById("multipartFile").files[0].getAsDataURL();//获取的路径为FF识别的加密字符串
+    //            file_url = readFileFirefox(obj);
+    //        } else if (Sys.chrome) {
+    //            file_url = obj.value;
+    //        }
+    //        $('#absolutePath').val(file_url);
+    //    };
+</script>
+<body>
+<div id="wrapper" class="width">
+	<div id="header">
+		<div id="logo2-wrapper">
+			<img id="logo2" th:src="@{/images/logo2.png}" src="../static/images/logo2.png" alt="在线压缩" />
+			<h1 id="logo2-text">压缩</h1>
+		</div>
+		<ol>
+			<li>从您的设备中选择需要压缩的文件.选择压缩算法。</li>
+			<li>等待压缩完成，查看压缩报告。</li>
+		</ol>
+		<div class="clear"></div>
+	</div>
+
+	<div id="main">
+		<div id="carousel-wrapper">
+			<div id="carousel">
+				<form class="form-inline" role="form" id="compressInfo" method="post" action="/compressor"
+								enctype="multipart/form-data">
+					<div class="form-group">
+						<input name="multipartFile" id="multipartFile"
+										class="form-control" type="file" required="required" />
+						<input type="text" id="absolutePath" placeholder="输出的文件路径" name="absolutePath" />
+					</div>
+					<div class="form-group form-control">
+						<input type="radio" name="action" value="1" required="required" />压缩
+						<input type="radio" name="action" value="2" required="required" />解压
+					</div>
+					<div class="form-group form-control">
+						<select id="compressProcess" name="compressProcess" title="选择算法" required="required">
+							<option th:value="${process}" th:text="${process}" th:each="process : ${processList}">
+							</option>
+						</select>
+					</div>
+					<button type="submit" id="submit" class="btn btn-default">执行</button>
+				</form>
+			</div>
+			<div>
+				<table class="table table-condensed">
+					<caption>结果数据表</caption>
+					<thead>
+					<tr>
+						<th>名称</th>
+						<th>值</th>
+					</tr>
+					</thead>
+					<th:block th:if="${compressInfo != null}">
+						<th:block th:switch="${compressInfo.action}">
+							<tbody th:case="1">
+							<tr>
+								<td>原文件</td>
+								<td th:text="${compressInfo.beforeSize} + '字节'"></td>
+							</tr>
+							<tr>
+								<td>压缩后</td>
+								<td th:text="${compressInfo.afterSize} + '字节'"></td>
+							</tr>
+							<tr>
+								<td>压缩率</td>
+								<td th:text="${compressInfo.compressRate} + '%'">---%</td>
+							</tr>
+							<tr>
+								<td>压缩耗时</td>
+								<td th:text="${compressInfo.compressTime} + 'ms'">---ms</td>
+							</tr>
+							<tr>
+								<td>解压耗时</td>
+								<td>---ms</td>
+							</tr>
+							<tr>
+								<td>使用算法</td>
+								<td th:text="${compressInfo.compressProcess}"></td>
+							</tr>
+							</tbody>
+							<tbody th:case="2">
+							<tr>
+								<td>原文件</td>
+								<td>---字节</td>
+							</tr>
+							<tr>
+								<td>压缩后</td>
+								<td>---字节</td>
+							</tr>
+							<tr>
+								<td>压缩率</td>
+								<td>---%</td>
+							</tr>
+							<tr>
+								<td>压缩耗时</td>
+								<td>---ms</td>
+							</tr>
+							<tr>
+								<td>解压耗时</td>
+								<td th:text="${compressInfo.compressTime} + 'ms'"></td>
+							</tr>
+							<tr>
+								<td>使用算法</td>
+								<td th:text="${compressInfo.compressProcess}"></td>
+							</tr>
+							</tbody>
+						</th:block>
+					</th:block>
+					<tbody th:if="${compressInfo == null}">
+					<tr>
+						<td>原文件</td>
+						<td>---字节</td>
+					</tr>
+					<tr>
+						<td>压缩后</td>
+						<td>---字节</td>
+					</tr>
+					<tr>
+						<td>压缩率</td>
+						<td>---%</td>
+					</tr>
+					<tr>
+						<td>压缩耗时</td>
+						<td>---ms</td>
+					</tr>
+					<tr>
+						<td>解压耗时</td>
+						<td>---ms</td>
+					</tr>
+					<tr>
+						<td>使用算法</td>
+						<td></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer">
+		<div id="bottom">
+			<p id="footer-copy">&copy; 2017</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

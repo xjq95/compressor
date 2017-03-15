@@ -1,0 +1,53 @@
+# ----------------------------------------
+# CORE PROPERTIES
+# ----------------------------------------
+# Path to project
+project.base-dir: multipartFile:///S:/IntelliJ projects/compressor
+
+logging:
+  level: debug
+spring:
+  application:
+    name: compressor
+  output:
+    ansi:
+      enabled: always
+
+  thymeleaf: # Enable template caching.
+    cache: false
+    encoding: utf-8
+    check-template-location: true
+    # Enable MVC Thymeleaf view resolution.
+    enabled: true
+    mode: LEGACYHTML5
+    # Template mode to be applied to templates. See also StandardTemplateModeHandlers.
+#    # Prefix that gets prepended to view names when building a URL.
+#    prefix: classpath*:/templates/
+#    # Suffix that gets appended to view names when building a URL.
+#    suffix: .html
+  http:
+    multipart:
+      max-file-size: 50MB
+  resources:
+    chain:
+      cache: false
+
+debug: true
+
+server:
+  port: 8080
+  compression:
+    enabled: false
+  tomcat:
+    basedir: target/tomcat
+    accesslog:
+      enabled: true
+security:
+  headers:
+    cache: false
+
+# 管理终端
+endpoints:
+  shutdown:
+    enabled: true
+    sensitive: false
