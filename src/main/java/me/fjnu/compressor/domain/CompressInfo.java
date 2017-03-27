@@ -30,7 +30,8 @@ public class CompressInfo {
 	private long compressTime; //压缩用时
 	private long unCompressTime; //压缩用时
 	private int compressLevel; //压缩等级（压缩了多少遍）
-	
+	private double compressM; //压缩因子
+	private double compressN; //压缩效率
 	private String contentType; //文件类型
 	private String filename; //文件名
 	@NotNull
@@ -39,7 +40,9 @@ public class CompressInfo {
 	public double getCompressRate() {
 		return (float) afterSize / beforeSize * 100.0;
 	}
-	
+	public double getCompressM() {
+		return (float) beforeSize / afterSize * 1.0;
+	}
 	public long getCompressTime() {
 		return endTime - startTime;
 	}

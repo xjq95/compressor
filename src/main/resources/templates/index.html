@@ -159,6 +159,10 @@
 								<td>使用算法</td>
 								<td th:text="${compressInfo.compressProcess}"></td>
 							</tr>
+							<tr>
+								<td>压缩因子/效率</td>
+								<td th:text="${compressInfo.compressM} + '/' + ${100 - compressInfo.compressRate}"></td>
+							</tr>
 							</tbody>
 							<tbody th:case="2">
 							<tr>
@@ -184,6 +188,10 @@
 							<tr>
 								<td>使用算法</td>
 								<td th:text="${compressInfo.compressProcess}"></td>
+							</tr>
+							<tr>
+								<td>压缩因子/效率</td>
+								<td></td>
 							</tr>
 							</tbody>
 						</th:block>
@@ -211,6 +219,10 @@
 					</tr>
 					<tr>
 						<td>使用算法</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>压缩因子/效率</td>
 						<td></td>
 					</tr>
 					</tbody>
