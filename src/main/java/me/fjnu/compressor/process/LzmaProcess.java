@@ -1,5 +1,6 @@
 package me.fjnu.compressor.process;
 
+import me.fjnu.compressor.domain.CompressInfo;
 import org.apache.commons.compress.compressors.lzma.LZMACompressorInputStream;
 import org.apache.commons.compress.compressors.lzma.LZMACompressorOutputStream;
 import org.apache.commons.io.output.ByteArrayOutputStream;
@@ -16,7 +17,7 @@ import java.util.zip.DataFormatException;
 @Component
 public class LzmaProcess implements CompressProcess {
 	@Override
-	public byte[] compress(byte[] srcBytes) throws IOException {
+	public byte[] compress(byte[] srcBytes, CompressInfo compressInfo) throws IOException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		LZMACompressorOutputStream lzOut = new LZMACompressorOutputStream(out);
 		lzOut.write(srcBytes);
@@ -25,7 +26,7 @@ public class LzmaProcess implements CompressProcess {
 	}
 	
 	@Override
-	public byte[] uncompress(byte[] bytes) throws DataFormatException, IOException {
+	public byte[] uncompress(byte[] bytes, CompressInfo compressInfo) throws DataFormatException, IOException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ByteArrayInputStream in = new ByteArrayInputStream(bytes);
 		LZMACompressorInputStream lzI = new LZMACompressorInputStream(in);

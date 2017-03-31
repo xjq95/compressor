@@ -1,5 +1,6 @@
 package me.fjnu.compressor.process;
 
+import me.fjnu.compressor.domain.CompressInfo;
 import org.anarres.lzo.*;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.springframework.context.annotation.Scope;
@@ -16,7 +17,7 @@ import java.io.IOException;
 @Scope("singleton")
 public class LzoProcess implements CompressProcess {
 	@Override
-	public byte[] compress(byte srcBytes[]) throws IOException {
+	public byte[] compress(byte[] srcBytes, CompressInfo compressInfo) throws IOException {
 		LzoCompressor compressor = LzoLibrary.getInstance().newCompressor(
 				LzoAlgorithm.LZO1X, null);
 		
@@ -28,7 +29,7 @@ public class LzoProcess implements CompressProcess {
 		return os.toByteArray();
 	}
 	@Override
-	public byte[] uncompress(byte[] bytes) throws IOException {
+	public byte[] uncompress(byte[] bytes, CompressInfo compressInfo) throws IOException {
 		LzoDecompressor decompressor = LzoLibrary.getInstance()
 				.newDecompressor(LzoAlgorithm.LZO1X, null);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();

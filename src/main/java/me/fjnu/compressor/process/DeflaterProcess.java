@@ -1,5 +1,6 @@
 package me.fjnu.compressor.process;
 
+import me.fjnu.compressor.domain.CompressInfo;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ import java.util.zip.Inflater;
 @Scope("singleton")
 public class DeflaterProcess implements CompressProcess {
 	@Override
-	public byte[] compress(byte input[]) throws IOException {
+	public byte[] compress(byte[] input, CompressInfo compressInfo) throws IOException {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		Deflater compressor = new Deflater(9);
 		try {
@@ -37,7 +38,7 @@ public class DeflaterProcess implements CompressProcess {
 		return bos.toByteArray();
 	}
 	@Override
-	public byte[] uncompress(byte[] input) throws DataFormatException, IOException {
+	public byte[] uncompress(byte[] input, CompressInfo compressInfo) throws DataFormatException, IOException {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		Inflater decompressor = new Inflater();
 		try {

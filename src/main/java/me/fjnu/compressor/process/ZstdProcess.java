@@ -1,6 +1,7 @@
 package me.fjnu.compressor.process;
 
 import com.github.luben.zstd.Zstd;
+import me.fjnu.compressor.domain.CompressInfo;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -15,12 +16,12 @@ import java.util.zip.DataFormatException;
 public class ZstdProcess implements CompressProcess {
 	
 	@Override
-	public byte[] compress(byte[] srcBytes) throws IOException {
+	public byte[] compress(byte[] srcBytes, CompressInfo compressInfo) throws IOException {
 	 return 	Zstd.compress(srcBytes);
 	}
 	
 	@Override
-	public byte[] uncompress(byte[] bytes) throws DataFormatException, IOException {
+	public byte[] uncompress(byte[] bytes, CompressInfo compressInfo) throws DataFormatException, IOException {
 		byte[] result = null;
 		Zstd.decompress(bytes, result);
 		return result;

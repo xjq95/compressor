@@ -1,5 +1,6 @@
 package me.fjnu.compressor.process;
 
+import me.fjnu.compressor.domain.CompressInfo;
 import net.jpountz.lz4.*;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.springframework.context.annotation.Scope;
@@ -16,7 +17,7 @@ import java.io.IOException;
 @Scope("singleton")
 public class Lz4Process implements CompressProcess {
 	@Override
-	public byte[] compress(byte srcBytes[]) throws IOException {
+	public byte[] compress(byte[] srcBytes, CompressInfo compressInfo) throws IOException {
 		LZ4Factory factory = LZ4Factory.fastestInstance();
 		ByteArrayOutputStream byteOutput = new ByteArrayOutputStream();
 		LZ4Compressor compressor = factory.fastCompressor();
@@ -28,7 +29,7 @@ public class Lz4Process implements CompressProcess {
 	}
 	
 	@Override
-	public byte[] uncompress(byte[] bytes) throws IOException {
+	public byte[] uncompress(byte[] bytes, CompressInfo compressInfo) throws IOException {
 		LZ4Factory factory = LZ4Factory.fastestInstance();
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		LZ4FastDecompressor decompresser = factory.fastDecompressor();

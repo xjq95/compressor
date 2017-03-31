@@ -1,5 +1,6 @@
 package me.fjnu.compressor.process;
 
+import me.fjnu.compressor.domain.CompressInfo;
 import me.fjnu.compressor.util.huffman.AdaptiveHuffmanCompress;
 import me.fjnu.compressor.util.huffman.AdaptiveHuffmanDecompress;
 import me.fjnu.compressor.util.huffman.BitInputStream;
@@ -20,7 +21,7 @@ import java.util.zip.DataFormatException;
 public class HuffmanProcess implements CompressProcess {
 	
 	@Override
-	public byte[] compress(byte[] b) throws IOException {
+	public byte[] compress(byte[] b, CompressInfo compressInfo) throws IOException {
 		InputStream in = new ByteArrayInputStream(b);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		BitOutputStream bitOut = new BitOutputStream(out);
@@ -31,7 +32,7 @@ public class HuffmanProcess implements CompressProcess {
 	}
 	
 	@Override
-	public byte[] uncompress(byte[] b) throws DataFormatException, IOException {
+	public byte[] uncompress(byte[] b, CompressInfo compressInfo) throws DataFormatException, IOException {
 		InputStream in = new ByteArrayInputStream(b);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		AdaptiveHuffmanDecompress.decompress(new BitInputStream(in), out);

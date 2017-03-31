@@ -1,5 +1,6 @@
 package me.fjnu.compressor.process;
 
+import me.fjnu.compressor.domain.CompressInfo;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorOutputStream;
 import org.apache.commons.io.output.ByteArrayOutputStream;
@@ -19,7 +20,7 @@ import java.io.IOException;
 @Scope("singleton")
 public class Bzip2Process implements CompressProcess {
 	@Override
-	public byte[] compress(byte srcBytes[]) throws IOException {
+	public byte[] compress(byte[] srcBytes, CompressInfo compressInfo) throws IOException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		BZip2CompressorOutputStream bcos = new BZip2CompressorOutputStream(out);
 		bcos.write(srcBytes);
@@ -29,7 +30,7 @@ public class Bzip2Process implements CompressProcess {
 	}
 	
 	@Override
-	public byte[] uncompress(byte[] bytes) throws IOException {
+	public byte[] uncompress(byte[] bytes, CompressInfo compressInfo) throws IOException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ByteArrayInputStream in = new ByteArrayInputStream(bytes);
 		BZip2CompressorInputStream ungzip = new BZip2CompressorInputStream(in);

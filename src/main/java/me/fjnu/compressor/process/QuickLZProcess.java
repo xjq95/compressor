@@ -1,5 +1,6 @@
 package me.fjnu.compressor.process;
 
+import me.fjnu.compressor.domain.CompressInfo;
 import me.fjnu.compressor.util.QuickLZ;
 import org.springframework.stereotype.Component;
 
@@ -13,12 +14,12 @@ import java.util.zip.DataFormatException;
 @Component
 public class QuickLZProcess implements CompressProcess {
 	@Override
-	public byte[] compress(byte[] srcBytes) throws IOException {
+	public byte[] compress(byte[] srcBytes, CompressInfo compressInfo) throws IOException {
 		return QuickLZ.compress(srcBytes,3);
 	}
 	
 	@Override
-	public byte[] uncompress(byte[] bytes) throws DataFormatException, IOException {
+	public byte[] uncompress(byte[] bytes, CompressInfo compressInfo) throws DataFormatException, IOException {
 		return QuickLZ.decompress(bytes);
 	}
 }

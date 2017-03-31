@@ -16,10 +16,10 @@ import java.util.zip.DataFormatException;
 //@SpringBootTest
 public class CompressorApplicationTests {
 	
-//	@Autowired
+	//	@Autowired
 	FileCompressService fileCompressService;
 	
-//	@Test
+	//	@Test
 	public void testEncode() throws IOException, InvalidParamsException, DataFormatException, InvalidInputEncodedDataFileException {
 		Path path = Paths.get("D:\\log_config.dat");
 		MockMultipartFile mockMultipartFile = new MockMultipartFile("log_config.dat", Files.readAllBytes(path));
@@ -36,8 +36,8 @@ public class CompressorApplicationTests {
 			compressInfo.setCompressProcess(string);
 			fileCompressService.compress(compressInfo);
 			System.out.println(compressInfo);
-
-
+			
+			
 			//解压测试
 			MockMultipartFile mockMultipartFile2 = new MockMultipartFile(string, Files.readAllBytes(path2));
 			compressInfo.setAbsolutePath(pathto + "un");

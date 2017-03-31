@@ -24,29 +24,52 @@ public class FileCompressService {
 	@Autowired
 	private ApplicationContext applicationContext;
 	
+	/**
+	 * 压缩
+	 *
+	 * @param compressInfo 压缩信息
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidParamsException
+	 */
 	public CompressInfo compress(CompressInfo compressInfo) throws IOException, InvalidParamsException {
 		CompressProcess compressProcess = (CompressProcess) applicationContext
 				.getBean(compressInfo.getCompressProcess());
 		byte[] bytes = compressInfo.getMultipartFile().getBytes();
-		byte[] done = compressProcess.compress(bytes);
+		byte[] done = compressProcess.compress(bytes, compressInfo);
 		File file = new File(compressInfo.getAbsolutePath());
 		FileUtils.writeByteArrayToFile(file, done);
 		compressInfo.setAfterFile(file);
 		return compressInfo;
 	}
 	
+	/**
+	 * 解压缩
+	 *
+	 * @param compressInfo 压缩信息
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidInputEncodedDataFileException
+	 * @throws InvalidParamsException
+	 * @throws DataFormatException
+	 */
 	public CompressInfo unCompress(CompressInfo compressInfo) throws IOException,
 			InvalidInputEncodedDataFileException, InvalidParamsException, DataFormatException {
 		CompressProcess compressProcess = (CompressProcess) applicationContext
 				.getBean(compressInfo.getCompressProcess());
 		byte[] bytes = compressInfo.getMultipartFile().getBytes();
-		bytes = compressProcess.uncompress(bytes);
+		bytes = compressProcess.uncompress(bytes, compressInfo);
 		File file = new File(compressInfo.getAbsolutePath());
 		FileUtils.writeByteArrayToFile(file, bytes);
 		compressInfo.setAfterFile(file);
 		return compressInfo;
 	}
 	
+	/**
+	 * 获取压缩列表
+	 *
+	 * @return 算法列表
+	 */
 	public List<String> getProcessList() {
 		return Arrays.asList(applicationContext.getBeanNamesForType(CompressProcess.class));
 	}

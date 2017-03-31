@@ -3,26 +3,28 @@ package me.fjnu.compressor.process;
 import me.fjnu.compressor.domain.CompressInfo;
 import me.fjnu.compressor.exception.InvalidInputEncodedDataFileException;
 import me.fjnu.compressor.exception.InvalidParamsException;
-import me.fjnu.compressor.util.lzw.LZWDecoder;
-import me.fjnu.compressor.util.lzw.LZWEncoder;
+import org.jcodec.codecs.mpeg12.MPEGEncoder;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.zip.DataFormatException;
 
 /**
- * Created by xujiaqi on 17.3.13.
+ * Created by xujiaqi on 17.3.30.
  * todo
  */
 @Component
-public class LzwProcess implements CompressProcess {
+public class MpegProcess implements CompressProcess {
 	@Override
 	public byte[] compress(byte[] srcBytes, CompressInfo compressInfo) throws IOException, InvalidParamsException {
-		return new LZWEncoder().encode(srcBytes);
+		MPEGEncoder encoder = new MPEGEncoder();
+		
+		return new byte[0];
 	}
 	
 	@Override
-	public byte[] uncompress(byte[] bytes, CompressInfo compressInfo) throws DataFormatException, IOException, InvalidParamsException, InvalidInputEncodedDataFileException {
-		return new LZWDecoder().decode(bytes);
+	public byte[] uncompress(
+			byte[] bytes, CompressInfo compressInfo) throws DataFormatException, IOException, InvalidParamsException, InvalidInputEncodedDataFileException {
+		return new byte[0];
 	}
 }

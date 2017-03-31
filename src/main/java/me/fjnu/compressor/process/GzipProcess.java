@@ -1,5 +1,6 @@
 package me.fjnu.compressor.process;
 
+import me.fjnu.compressor.domain.CompressInfo;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ import java.util.zip.GZIPOutputStream;
 @Scope("singleton")
 public class GzipProcess implements CompressProcess {
 	@Override
-	public byte[] compress(byte srcBytes[]) {
+	public byte[] compress(byte[] srcBytes, CompressInfo compressInfo) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		GZIPOutputStream gzip;
 		try {
@@ -32,7 +33,7 @@ public class GzipProcess implements CompressProcess {
 		return out.toByteArray();
 	}
 	@Override
-	public byte[] uncompress(byte[] bytes) throws IOException {
+	public byte[] uncompress(byte[] bytes, CompressInfo compressInfo) throws IOException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ByteArrayInputStream in = new ByteArrayInputStream(bytes);
 		GZIPInputStream ungzip = new GZIPInputStream(in);

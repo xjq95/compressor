@@ -1,5 +1,6 @@
 package me.fjnu.compressor.process;
 
+import me.fjnu.compressor.domain.CompressInfo;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.xerial.snappy.Snappy;
@@ -14,11 +15,11 @@ import java.io.IOException;
 @Scope("singleton")
 public class SnappyProcess implements CompressProcess {
 	@Override
-	public byte[] compress(byte srcBytes[]) throws IOException {
+	public byte[] compress(byte[] srcBytes, CompressInfo compressInfo) throws IOException {
 		return Snappy.compress(srcBytes);
 	}
 	@Override
-	public byte[] uncompress(byte[] bytes) throws IOException {
+	public byte[] uncompress(byte[] bytes, CompressInfo compressInfo) throws IOException {
 		return Snappy.uncompress(bytes);
 	}
 }

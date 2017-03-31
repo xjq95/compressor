@@ -1,8 +1,5 @@
 package me.fjnu.compressor.exception;
 
-/**
- * Created by lukasz on 10.06.16.
- */
 public class InvalidInputEncodedDataFileException extends Exception {
 
     public InvalidInputEncodedDataFileException() {

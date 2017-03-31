@@ -7,7 +7,7 @@ import java.io.*;
 
 /**
  * Created by xujiaqi on 17.3.13.
- * todo
+ * 主要参照 https://github.com/jai-imageio/jai-imageio-jpeg2000
  */
 public class CharFileGener {
 	public static void main(String[] args) throws IOException {
