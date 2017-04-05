@@ -55,6 +55,14 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>xuggle repo</id>
+            <url>http://www.dcm4che.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>xuggle2 repo</id>
+            <url>http://xuggle.googlecode.com/svn/trunk/repo/share/java/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -189,6 +197,11 @@
             <groupId>org.jcodec</groupId>
             <artifactId>jcodec-javase</artifactId>
             <version>0.1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>net.straylightlabs</groupId>
+            <artifactId>tivo-libre</artifactId>
+            <version>0.7.4</version>
         </dependency>
     </dependencies>
 

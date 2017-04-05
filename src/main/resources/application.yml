@@ -27,7 +27,8 @@ spring:
 #    suffix: .html
   http:
     multipart:
-      max-file-size: 50MB
+      max-file-size: 100MB
+      max-request-size: 200MB
   resources:
     chain:
       cache: false

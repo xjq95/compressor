@@ -3,7 +3,6 @@ package me.fjnu.compressor.process;
 import me.fjnu.compressor.domain.CompressInfo;
 import me.fjnu.compressor.exception.InvalidInputEncodedDataFileException;
 import me.fjnu.compressor.exception.InvalidParamsException;
-import org.jcodec.codecs.h264.H264Encoder;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -17,7 +16,6 @@ import java.util.zip.DataFormatException;
 public class H264Process implements CompressProcess{
 	@Override
 	public byte[] compress(byte[] srcBytes, CompressInfo compressInfo) throws IOException, InvalidParamsException {
-		H264Encoder h264Encoder = H264Encoder.createH264Encoder();
 		return new byte[0];
 	}
 	
