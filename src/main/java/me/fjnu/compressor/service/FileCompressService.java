@@ -25,6 +25,9 @@ public class FileCompressService {
 	@Autowired
 	private ApplicationContext applicationContext;
 	
+	@Autowired
+	private FFMpegUtil ffMpegUtil;
+	
 	/**
 	 * 压缩
 	 *
@@ -45,15 +48,15 @@ public class FileCompressService {
 			String toFile = null;
 			if (process.startsWith("h261")) {
 				toFile = compressInfo.getAbsolutePath() + ".mov";
-				FFMpegUtil.doH261Convert(tmp.getAbsolutePath(), toFile);
+				ffMpegUtil.doH261Convert(tmp.getAbsolutePath(), toFile);
 			}
 			if (process.startsWith("h264")) {
-				toFile = compressInfo.getAbsolutePath() + ".mp4";
-				FFMpegUtil.doH264Convert(tmp.getAbsolutePath(), toFile);
+				toFile = compressInfo.getAbsolutePath() + ".mov";
+				ffMpegUtil.doH264Convert(tmp.getAbsolutePath(), toFile);
 			}
 			if (process.startsWith("mpeg")) {
 				toFile = compressInfo.getAbsolutePath() + ".mp4";
-				FFMpegUtil.doMpegConvert(tmp.getAbsolutePath(), toFile);
+				ffMpegUtil.doMpegConvert(tmp.getAbsolutePath(), toFile);
 			}
 			File done = new File(toFile);
 			compressInfo.setAfterFile(done);

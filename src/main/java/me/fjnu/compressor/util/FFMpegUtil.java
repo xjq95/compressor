@@ -1,7 +1,9 @@
 package me.fjnu.compressor.util;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import org.apache.commons.io.FileUtils;
+import org.springframework.stereotype.Component;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,27 +11,38 @@ import java.util.List;
  * Created by xujiaqi on 17.4.3.
  * ffmpeg能解析的格式：（asx，asf，mpg，wmv，3gp，mp4，mov，avi，flv等）
  */
+@Component
 public class FFMpegUtil {
-	static final String BASEPATH = "d:\\";
+	private String BASEPATH;
 	
 	public static void main(String[] args) {
-		doH261Convert("d:\\赛车小视频_标清.mp4", "D:\\1.mov");
+		System.out.println(System.getProperty("java.io.tmpdir"));
+//		doH261Convert("d:\\Explosion.mov", "D:\\1.mov");
 	}
 	
-	public static boolean doH264Convert(String oldfilepath, String toFile) {
+	
+	public FFMpegUtil() throws IOException {
+		InputStream resourceAsStream = this.getClass().getResourceAsStream("/util/ffmpeg.exe");
+		BASEPATH = System.getProperty("java.io.tmpdir");
+		FileUtils.copyInputStreamToFile(resourceAsStream, new File(BASEPATH + "ffmpeg.exe"));
+	}
+	
+	public boolean doH264Convert(String oldfilepath, String toFile) {
 		//转换格式命令
 		List<String> commend = new ArrayList<String>();
 		commend.add(BASEPATH + "ffmpeg");
 		commend.add("-i");
 		commend.add(oldfilepath);
+		commend.add("-s");
+		commend.add("352x288");
 		commend.add("-vcodec");
-		commend.add("libx264rgb");
+		commend.add("libx264");
 		commend.add("-y");
 		commend.add(toFile);
 		return execComand(commend);
 	}
 	
-	public static boolean doH261Convert(String oldfilepath, String toFile) {
+	public boolean doH261Convert(String oldfilepath, String toFile) {
 		//转换格式命令
 		List<String> commend = new ArrayList<String>();
 		commend.add(BASEPATH + "ffmpeg");
@@ -44,12 +57,14 @@ public class FFMpegUtil {
 		return execComand(commend);
 	}
 	
-	public static boolean doMpegConvert(String oldfilepath, String toFile) {
+	public boolean doMpegConvert(String oldfilepath, String toFile) {
 		//转换格式命令
 		List<String> commend = new ArrayList<String>();
 		commend.add(BASEPATH + "ffmpeg");
 		commend.add("-i");
 		commend.add(oldfilepath);
+		commend.add("-s");
+		commend.add("352x288");
 		commend.add("-vcodec");
 		commend.add("mpeg4");
 		commend.add("-y");
@@ -57,7 +72,7 @@ public class FFMpegUtil {
 		return execComand(commend);
 	}
 	
-	public static boolean execComand(List<String> commend) {
+	public boolean execComand(List<String> commend) {
 		try {
 			//转换格式进程
 			ProcessBuilder builder = new ProcessBuilder(commend);

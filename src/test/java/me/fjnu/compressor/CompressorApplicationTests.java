@@ -4,7 +4,11 @@ import me.fjnu.compressor.domain.CompressInfo;
 import me.fjnu.compressor.exception.InvalidInputEncodedDataFileException;
 import me.fjnu.compressor.exception.InvalidParamsException;
 import me.fjnu.compressor.service.FileCompressService;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,14 +16,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.zip.DataFormatException;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class CompressorApplicationTests {
 	
-	//	@Autowired
+	@Autowired
 	FileCompressService fileCompressService;
 	
-	//	@Test
+	//			@Test
 	public void testEncode() throws IOException, InvalidParamsException, DataFormatException, InvalidInputEncodedDataFileException {
 		Path path = Paths.get("D:\\log_config.dat");
 		MockMultipartFile mockMultipartFile = new MockMultipartFile("log_config.dat", Files.readAllBytes(path));
@@ -47,4 +51,8 @@ public class CompressorApplicationTests {
 		}
 	}
 	
+	@org.junit.Test
+	public void testPath() {
+		System.out.println(System.getProperty("java.io.tmpdir"));
+	}
 }
