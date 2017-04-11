@@ -12,7 +12,7 @@ import java.util.zip.DataFormatException;
 
 /**
  * Created by xujiaqi on 17.3.13.
- * todo
+ * lzw算法
  */
 @Component
 public class LzwProcess implements CompressProcess {

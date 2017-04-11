@@ -9,7 +9,7 @@ import java.io.File;
 
 /**
  * Created by xujiaqi on 17.3.11.
- * todo
+ * 压缩信息数据pojo
  */
 
 @Data
@@ -40,9 +40,11 @@ public class CompressInfo {
 	public double getCompressRate() {
 		return (float) afterSize / beforeSize * 100.0;
 	}
+	
 	public double getCompressM() {
 		return (float) beforeSize / afterSize * 1.0;
 	}
+	
 	public long getCompressTime() {
 		return endTime - startTime;
 	}

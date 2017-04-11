@@ -20,7 +20,7 @@ import java.util.zip.DataFormatException;
 
 /**
  * Created by xujiaqi on 17.3.27.
- * todo
+ * jpeg算法
  */
 @Component
 public class JpegProcess implements CompressProcess {

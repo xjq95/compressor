@@ -9,12 +9,13 @@ import java.io.IOException;
 
 /**
  * Created by xujiaqi on 17.3.31.
- * todo
+ * 字节工具
  */
 public class MyByteUtil {
 	/**
 	 * 字节数组转buff'''''
-	 * @param imageData
+	 *
+	 * @param imageData 原图片字节码
 	 * @return
 	 */
 	public static BufferedImage createImageFromBytes(byte[] imageData) {
@@ -28,21 +29,22 @@ public class MyByteUtil {
 	
 	/**
 	 * 将{@link BufferedImage}生成formatName指定格式的图像数据
-	 * @param source
+	 *
+	 * @param source 原图片
 	 * @param formatName 图像格式名，图像格式名错误则抛出异常
 	 * @return
 	 */
-	public static byte[] writeBytes(BufferedImage source,String formatName){
+	public static byte[] writeBytes(BufferedImage source, String formatName) {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		Graphics2D g = null;
 		try {
-			for(BufferedImage s=source;!ImageIO.write(s, formatName, output);){
-				if(null!=g)
-					throw new IllegalArgumentException(String.format("not found writer for '%s'",formatName));
+			for (BufferedImage s = source; !ImageIO.write(s, formatName, output); ) {
+				if (null != g)
+					throw new IllegalArgumentException(String.format("not found writer for '%s'", formatName));
 				s = new BufferedImage(source.getWidth(),
 						source.getHeight(), BufferedImage.TYPE_INT_RGB);
 				g = s.createGraphics();
-				g.drawImage(source, 0, 0,null);
+				g.drawImage(source, 0, 0, null);
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);

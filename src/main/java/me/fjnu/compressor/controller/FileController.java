@@ -18,7 +18,7 @@ import java.util.zip.DataFormatException;
 
 /**
  * Created by xujiaqi on 17.3.15.
- * todo
+ * 文件解压缩请求处理handler
  */
 @Controller
 public class FileController {
@@ -26,6 +26,17 @@ public class FileController {
 	@Autowired
 	private FileCompressService fcs;
 	
+	/**
+	 * 压缩器
+	 *
+	 * @param compressInfo 请求压缩的信息
+	 * @param request      request
+	 * @return 结果页面
+	 * @throws IOException
+	 * @throws InvalidParamsException
+	 * @throws DataFormatException
+	 * @throws InvalidInputEncodedDataFileException
+	 */
 	@PostMapping(value = "/compressor")
 	public ModelAndView compressor(CompressInfo compressInfo, HttpServletRequest request) throws
 			IOException, InvalidParamsException, DataFormatException, InvalidInputEncodedDataFileException {

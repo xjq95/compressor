@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * Created by xujiaqi on 17.3.11.
- * todo
+ * snappy（以前称Zippy）是Google基于LZ77的思路用C++语言编写的快速数据压缩与解压程序库
  */
 @Component
 @Scope("singleton")

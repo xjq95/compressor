@@ -19,7 +19,7 @@ import java.util.zip.DataFormatException;
 
 /**
  * Created by xujiaqi on 17.3.30.
- * todo
+ * jpeg2000压缩
  */
 @Component
 public class Jp2Process implements CompressProcess {

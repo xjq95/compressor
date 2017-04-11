@@ -9,7 +9,7 @@ import java.util.zip.DataFormatException;
 
 /**
  * Created by xujiaqi on 17.3.13.
- * todo
+ * QuickLZ 是一个号称世界压缩速度最快的压缩库，并且也是个开源的压缩库，其遵守GPL 1, 2 或3协议
  */
 @Component
 public class QuickLZProcess implements CompressProcess {

@@ -15,7 +15,7 @@ import java.util.zip.DataFormatException;
 
 /**
  * Created by xujiaqi on 17.3.13.
- * todo
+ * 霍夫曼压缩
  */
 @Component
 public class HuffmanProcess implements CompressProcess {

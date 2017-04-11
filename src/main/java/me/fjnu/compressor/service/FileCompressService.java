@@ -32,7 +32,7 @@ public class FileCompressService {
 	 * 压缩
 	 *
 	 * @param compressInfo 压缩信息
-	 * @return
+	 * @return 压缩完毕的数据信息
 	 * @throws IOException
 	 * @throws InvalidParamsException
 	 */
@@ -58,7 +58,10 @@ public class FileCompressService {
 				toFile = compressInfo.getAbsolutePath() + ".mp4";
 				ffMpegUtil.doMpegConvert(tmp.getAbsolutePath(), toFile);
 			}
-			File done = new File(toFile);
+			File done = null;
+			if (toFile != null) {
+				done = new File(toFile);
+			}
 			compressInfo.setAfterFile(done);
 		} else {
 			byte[] bytes = compressInfo.getMultipartFile().getBytes();
@@ -74,7 +77,7 @@ public class FileCompressService {
 	 * 解压缩
 	 *
 	 * @param compressInfo 压缩信息
-	 * @return
+	 * @return 解压缩完毕的数据信息
 	 * @throws IOException
 	 * @throws InvalidInputEncodedDataFileException
 	 * @throws InvalidParamsException

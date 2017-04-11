@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by xujiaqi on 17.3.13.
- * todo
+ * 计算压缩算法耗时的切面
  */
 @Aspect
 @Component

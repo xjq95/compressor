@@ -1,5 +1,8 @@
 package me.fjnu.compressor.exception;
 
+/**
+ * 非法参数异常
+ */
 public class InvalidParamsException extends Exception {
     public InvalidParamsException() {
     }

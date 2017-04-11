@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  * Created by xujiaqi on 17.3.11.
- * todo
+ * lz4算法
  */
 @Component
 @Scope("singleton")

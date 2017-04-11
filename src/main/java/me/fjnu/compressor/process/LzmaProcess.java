@@ -12,7 +12,7 @@ import java.util.zip.DataFormatException;
 
 /**
  * Created by xujiaqi on 17.3.13.
- * todo
+ * lzma算法
  */
 @Component
 public class LzmaProcess implements CompressProcess {

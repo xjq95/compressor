@@ -10,7 +10,7 @@ import java.util.zip.DataFormatException;
 
 /**
  * Created by xujiaqi on 17.3.30.
- * todo
+ * mpeg算法
  */
 @Component
 public class MpegProcess implements CompressProcess {

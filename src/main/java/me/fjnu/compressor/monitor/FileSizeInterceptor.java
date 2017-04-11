@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by xujiaqi on 17.3.13.
- * todo
+ * 计算压缩前后文件大小的切面
  */
 @Aspect
 @Component
